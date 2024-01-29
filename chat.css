@@ -1,0 +1,131 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f2f2f2;
+}
+
+.container {
+    max-width: 690px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.chat-box {
+    height: 496px;
+    overflow-y: scroll;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.message {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.received {
+    background-color: #e6e6e6;
+}
+
+.sent {
+    background-color: #4caf50;
+    color: #fff;
+    text-align: right;
+}
+
+input {
+    width: 70%;
+    padding: 8px;
+    margin-right: 8px;
+}
+
+button {
+    padding: 8px;
+}
+
+.received {
+    white-space: pre-line;
+}
+
+/* Estilo para o modal */
+#myModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 50px;
+}
+
+#modalContent {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+#closeModal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#closeModal:hover,
+#closeModal:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.received {
+    white-space: pre-line;
+}
+
+/* Estilo para o modal */
+#myModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 50px;
+}
+
+#modalContent {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+#closeModal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#closeModal:hover,
+#closeModal:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+

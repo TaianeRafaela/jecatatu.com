@@ -1,0 +1,141 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* Substitua pelo caminho correto da sua imagem de fundo */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(68, 68, 68, 0.8);
+    /* Fundo semitransparente para melhor legibilidade sobre a imagem de fundo */
+    padding: 0.5em 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    margin: 0 0.5em;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: rgba(85, 85, 85, 0.8);
+    /* Cor do hover semitransparente */
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #ccc;
+    margin: 1em 0;
+}
+
+main {
+    padding: 1em;
+}
+
+.tel {
+    width: 490px;
+    /* Tamanho desejado para as imagens */
+    height: 540px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 0 10px;
+    /* Margem lateral de 10px entre as imagens */
+    display: inline-block;
+}
+
+.comida {
+    width: 740px;
+    /* Tamanho desejado para as imagens */
+    height: 540px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 0 10px;
+    /* Margem lateral de 10px entre as imagens */
+    display: inline-block;
+    /* Exibe as imagens como elementos em linha */
+}
+
+.imagens {
+    display: flex;
+    /* Cria um layout flexível */
+    justify-content: center;
+    /* Centraliza as imagens horizontalmente */
+}
+
+.bemvindo {
+    width: 1250px;
+    /* Tamanho desejado para a imagem */
+    height: 750px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    /* Torna a imagem um bloco para aplicar margens automáticas */
+    margin-left: auto;
+    /* Margem esquerda automática */
+    margin-right: auto;
+    /* Margem direita automática */
+}
+
+/* Reset CSS */
+body,
+h1,
+h2,
+p,
+img {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+h1 {
+    color: #ff6600;
+    margin-left: 320px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    z-index: 999;
+}
+
+/* Estilos do overlay */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+}
+
+/* Estilos do botão de imagem */
+.modal-img-button {
+    cursor: pointer;
+    width: 20px; /* Ajuste a largura conforme necessário */
+    height: 20px; /* Ajuste a altura conforme necessário */
+}

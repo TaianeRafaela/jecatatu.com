@@ -1,0 +1,62 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-right: 260px;
+}
+
+form {
+    max-width: 550px;
+    margin: 20px auto;
+    padding: 20px;
+    margin-left: 345px;
+}
+
+label {
+    display: flex; /* Adicionado para usar flexbox */
+    align-items: center; /* Alinhar itens verticalmente no centro */
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="checkbox"] {
+    margin-right: -50px; /* Espaço entre a caixa de seleção e o texto */
+}
+
+input[type="submit"] {
+    background-color: #ff6600;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #bd540f;
+}
+
+.queijo {
+    width: 1150px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+

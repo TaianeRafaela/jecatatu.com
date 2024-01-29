@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cabecalho.css">
+    <link rel="stylesheet" href="chat.css">
+    <link rel="icon" href="./img/jeca_tatu.png">
+    <title>Chat</title>
+</head>
+
+<body onload="showModal()">
+
+    <!-- Modal -->
+    <div id="myModal">
+        <div id="modalContent">
+            <span id="closeModal" onclick="closeModal()">&times;</span>
+            <p>Caro Cliente,</p>
+            <p>Este chat é um protótipo e estamos trabalhando continuamente para aprimorar sua experiência.</p>
+            <p>Agradecemos sua compreensão durante este período de desenvolvimento.</p>
+            <p>Atenciosamente,<br>Equipe Jeca Tatu</p>
+        </div>
+    </div>
+
+    <header>
+        <img src="img/jeca_tatu.png" alt="Logo do Restaurante">
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="quemsomos.html">Quem somos</a>
+            <a href="cardapio.html">Cardápio</a>
+            <a href="contato.html">Contato</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="chat-box" id="chatBox">
+                <div class="message received">Bem-vindo ao Chat de Pedidos! Você já tem um login? (Sim/Não)</div>
+            </div>
+            <input type="text" id="userInput" placeholder="Digite sua mensagem..." onkeydown="handleInput(event)">
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Jeca Tatu</p>
+    </footer>
+
+    <script>
+        var isUserLoggedIn = false;
+        var isAwaitingConfirmation = false;
+        var isAwaitingCPF = false;
+        var isAwaitingPayment = false;
+        var selectedDish = '';
+
+        function handleInput(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            var userInput = document.getElementById('userInput').value;
+            if (userInput.trim() !== '') {
+                addMessage(userInput, 'sent');
+
+                if (!isUserLoggedIn) {
+                    processLogin(userInput);
+                } else if (isAwaitingCPF) {
+                    addMessage('Em que posso ajudar você?', 'received');
+                    isAwaitingCPF = false;
+                } else if (userInput.toLowerCase().includes('cardapio') || userInput.toLowerCase().includes('prato')) {
+                    showMenu();
+                } else if (isAwaitingConfirmation) {
+                    confirmOrder(userInput);
+                } else if (isAwaitingPayment) {
+                    processPayment(userInput);
+                } else {
+                    setTimeout(function () {
+                        var response = getBotResponse(userInput);
+                        addMessage(response, 'received');
+                    }, 500);
+                }
+
+                document.getElementById('userInput').value = '';
+            }
+        }
+
+        function processLogin(userInput) {
+            if (userInput.toLowerCase() === 'sim') {
+                addMessage('Digite seu CPF:', 'received');
+                isUserLoggedIn = true;
+                isAwaitingCPF = true;
+            } else if (userInput.toLowerCase() === 'não') {
+                addMessage('Gostaria de criar um login? (Sim/Não)', 'received');
+            } else {
+                addMessage('Desculpe, resposta inválida. Por favor, responda "Sim" ou "Não".', 'received');
+            }
+        }
+
+        function getBotResponse(userInput) {
+            var responses = {
+                'olá': 'Olá! Como posso ajudar você?',
+                // Adicione mais respostas conforme necessário
+            };
+
+            return responses[userInput.toLowerCase()] || 'Desculpe, não entendi. Pode reformular sua pergunta?';
+        }
+
+        function showMenu() {
+            setTimeout(function () {
+                var menuResponse = `
+                    Nosso cardápio inclui os seguintes pratos:
+                    
+                    1. Frango com Quiabo
+                        - Uma explosão de sabores tradicionais que remete às raízes da culinária brasileira.
+                        - Acompanhamentos: Arroz branco e Feijão-tropeiro.
+                        - Harmonização: Vinho tinto ou suco natural de abacaxi.
+
+                    2. Feijão Tropeiro
+                        - Saboroso feijão tropeiro com bacon crocante, linguiça defumada e feijão de qualidade.
+                        - Acompanhamentos: Arroz branco e couve refogada.
+                        - Harmonização: Cerveja gelada ou suco de laranja.
+
+                    3. Vaca Atolada
+                        - Delicioso ensopado de carne bovina com mandioca.
+                        - Acompanhamentos: Arroz branco e salada verde.
+                        - Harmonização: Vinho tinto seco ou suco de uva.
+
+                    4. Tutu à Mineira
+                        - Tutu de feijão incrementado com linguiça, bacon e farinha de mandioca.
+                        - Acompanhamentos: Arroz e couve refogada.
+                        - Harmonização: Cerveja escura ou suco de limão.
+
+                    5. Bambá de Couve
+                        - Prato típico com carne de porco, couve, feijão e temperos especiais.
+                        - Acompanhamentos: Farofa e mandioca cozida.
+                        - Harmonização: Cerveja artesanal ou suco de abacaxi com hortelã.
+
+                    6. Paçoca de Carne de Sol
+                        - Deliciosa paçoca de carne de sol que derrete na boca.
+                        - Acompanhamentos: Mandioca cozida e vinagrete.
+                        - Harmonização: Caipirinha ou suco de maracujá.
+
+                        Qual você desejaria ?
+                `;
+
+                addMessage(menuResponse, 'received');
+                isAwaitingConfirmation = true;
+            }, 500);
+        }
+
+        function confirmOrder(userInput) {
+            var selectedDishNumber = parseInt(userInput);
+
+            if (!isNaN(selectedDishNumber) && selectedDishNumber > 0 && selectedDishNumber <= 6) {
+                selectedDish = getDishDetails(selectedDishNumber);
+                addMessage(`Você escolheu o prato ${selectedDish.name}. Confirmar pedido? (Sim/Não)`, 'received');
+            } else if (userInput.toLowerCase() === 'sim' && selectedDish !== '') {
+                addMessage(`Pedido confirmado! Você escolheu ${selectedDish.name}. Como gostaria de pagar? (Cartão/Dinheiro)`, 'received');
+                isAwaitingConfirmation = false;
+                isAwaitingPayment = true;
+            } else if (userInput.toLowerCase() === 'não') {
+                addMessage('Pedido cancelado. Como posso ajudar mais?', 'received');
+                isAwaitingConfirmation = false;
+                selectedDish = '';
+            } else {
+                addMessage('Desculpe, opção inválida. Por favor, responda "Sim" ou "Não".', 'received');
+            }
+        }
+
+        function processPayment(userInput) {
+            if (userInput.toLowerCase() === 'cartão') {
+                addMessage('Ótimo! Aceitamos pagamento em cartão. Se precisar de mais alguma coisa, é só chamar.', 'received');
+                isAwaitingPayment = false;
+            } else if (userInput.toLowerCase() === 'dinheiro') {
+                addMessage('Perfeito! Pagamento em dinheiro. O entregador levará o troco correto. Alguma outra solicitação?', 'received');
+                isAwaitingPayment = false;
+            } else {
+                addMessage('Desculpe, opção inválida. Por favor, responda "Cartão" ou "Dinheiro".', 'received');
+            }
+        }
+
+        function getDishDetails(dishNumber) {
+            var dishes = [
+                { name: 'Frango com Quiabo', description: 'Uma explosão de sabores tradicionais que remete às raízes da culinária brasileira.', harmonization: 'Vinho tinto ou suco natural de abacaxi.' },
+                { name: 'Feijão Tropeiro', description: 'Saboroso feijão tropeiro com bacon crocante, linguiça defumada e feijão de qualidade.', harmonization: 'Cerveja gelada ou suco de laranja.' },
+                { name: 'Vaca Atolada', description: 'Delicioso ensopado de carne bovina com mandioca.', harmonization: 'Vinho tinto seco ou suco de uva.' },
+                { name: 'Tutu à Mineira', description: 'Tutu de feijão incrementado com linguiça, bacon e farinha de mandioca.', harmonization: 'Cerveja escura ou suco de limão.' },
+                { name: 'Bambá de Couve', description: 'Prato típico com carne de porco, couve, feijão e temperos especiais.', harmonization: 'Cerveja artesanal ou suco de abacaxi com hortelã.' },
+                { name: 'Paçoca de Carne de Sol', description: 'Deliciosa paçoca de carne de sol que derrete na boca.', harmonization: 'Caipirinha ou suco de maracujá.' },
+            ];
+
+            return dishes[dishNumber - 1];
+        }
+
+        function addMessage(message, type) {
+            var chatBox = document.getElementById('chatBox');
+            var messageDiv = document.createElement('div');
+            messageDiv.className = 'message ' + type;
+            messageDiv.innerHTML = message;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Funções para controlar o modal
+        function showModal() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'none';
+        }
+    </script>
+
+</body>
+
+</html>

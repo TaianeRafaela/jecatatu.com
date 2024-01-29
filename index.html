@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cabecalho.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="./img/jeca_tatu.png">
+    <title>Jeca Tatu</title>
+
+</head>
+
+<body>
+
+    <header>
+        <img src="img/jeca_tatu.png" alt="Logo do Restaurante">
+
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="quemsomos.html">Quem somos</a>
+            <a href="cardapio.html">Cardápio</a>
+            <a href="contato.html">Contato</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+        <div>
+            <img class="bemvindo" src="./img/bem vindo uai.png">
+        </div>
+    </main>
+    <div class="imagens">
+        <img class="tel" src="./img/tel.png">
+        <img class="comida" src="img/comidasmineiras.png">
+    </div>
+
+    <main>
+        <h1>NOVIDADES</h1>
+    </main>
+    <div>
+        <img class="bemvindo" src="./img/frangocomquiabo.png" onclick="openModal()">
+    </div>
+    <div class="overlay" id="overlay" onclick="closeModal()"></div>
+    <div class="modal" id="modal">
+        <h1>Frango com Quiabo</h1>
+        <p>Uma explosão de sabores tradicionais que remete às raízes da culinária brasileira. Nosso
+            irresistível
+            "Frango com Quiabo" é uma experiência única para os amantes da comida caseira.</p>
+
+        <h2>Descrição:</h2>
+        <p>Peitos de frango tenros são cuidadosamente cozidos em um molho especial, enriquecido com quiabos
+            frescos que
+            conferem uma textura única e um sabor inconfundível. As ervas e especiarias cuidadosamente
+            selecionadas
+            proporcionam um aroma delicioso que aguça os sentidos.</p>
+
+        <h2>Acompanhamentos:</h2>
+        <p>Sirva-se com o arroz branco soltinho, garantindo a combinação perfeita para absorver os sucos
+            saborosos do
+            frango com quiabo. Uma porção generosa de feijão-tropeiro, preparado com bacon crocante,
+            linguiça defumada,
+            e feijão de qualidade, completa essa refeição autêntica.</p>
+
+        <h2>Harmonização:</h2>
+        <p>Recomendamos um bom vinho tinto para acentuar os sabores marcantes desse prato. Para aqueles que
+            preferem uma
+            opção não alcoólica, experimente com um suco natural de abacaxi para equilibrar a suculência do
+            frango e a
+            leve acidez do quiabo.</p>
+
+        <p>Desfrute de uma experiência gastronômica que celebra a tradição e os sabores do Brasil!</p>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('modal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+
+
+    <footer>
+        <p>&copy; 2024 Jeca Tatu</p>
+    </footer>
+
+</body>
+
+</html>
